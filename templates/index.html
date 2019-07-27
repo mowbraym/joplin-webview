@@ -1,0 +1,19 @@
+$def with (rows, text_search_form, this_page, prev, next, pages, sort, sort_order)
+<H1>Joplin Webview (Page $this_page of $pages)</H1>
+Page: <a href="/?page=1&sort=$sort&sort_order=$sort_order">First | </a><a href="/?page=$prev&sort=$sort&sort_order=$sort_order">Prev | </a>
+$for page in range(1, pages + 1):
+	<a href="/?page=$page&sort=$sort&sort_order=$sort_order">$page | </a>
+<a href="/?page=$next&sort=$sort&sort_order=$sort_order">Next | </a><a href="/?page=$pages&sort=$sort&sort_order=$sort_order">Last</a></p>
+<table id="t01">
+    <tr>
+	<th><a href="?sort=myfolder_titles.breadcrumb_title&sort_order=ASC">Folder</a></th>
+	<th><a href="?sort=notes.updated_time&sort_order=DESC">Update Time</a></th>
+	<th><a href="?sort=notes.title&sort_order=ASC">Title</a></th>
+    </tr>
+$for row in rows:
+    <tr>
+	<td><a href="folder_notes?id=$row.folders_id">$row.folders_title</a></td>
+	<td>$datetime.fromtimestamp(row.notes_updated_time/1000).strftime("%c")</td>
+	<td><a href="/note?id=$row.notes_id">$row.notes_title</a></td>
+    </tr>
+</table>

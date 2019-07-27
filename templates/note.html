@@ -1,0 +1,104 @@
+$def with (title, body, note, tags)
+
+<a id="Top"/><a href='#Properties'>Note Properties</a>
+<H1>$title</H1>
+$if note.source_url:
+	<a href="$note.source_url" target="_blank">$note.source_url</a>
+<HR>
+Tags:
+$for tag in tags:
+	<a href="/tag_notes?id=$tag.id">$tag.title</a> |&nbsp;
+<HR>
+$:body
+<HR>
+<a href='/'>Home</a> | <a href="#Top">Top</a>
+<HR>
+<a id="Properties"/><H2>Note Properties</H2>
+<table>
+    <tr>
+        <th>Property</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>ID</td>
+        <td>$note.id</td>
+    </tr>
+    <tr>
+        <td>Created Time</td>
+        <td>$datetime.fromtimestamp(note.created_time/1000).strftime("%c")</td>
+    </tr>
+    <tr>
+        <td>Updated Time</td>
+        <td>$datetime.fromtimestamp(note.updated_time/1000).strftime("%c")</td>
+    </tr>
+    <tr>
+        <td>Is Conflict</td>
+        <td>$note.is_conflict</td>
+    </tr>
+    <tr>
+        <td>Latitude</td>
+        <td>$note.latitude</td>
+    </tr>
+    <tr>
+        <td>longitude</td>
+        <td>$note.longitude</td>
+    </tr>
+    <tr>
+        <td>Altitude</td>
+        <td>$note.altitude</td>
+    </tr>
+    <tr>
+        <td>Author</td>
+        <td>$note.author</td>
+    </tr>
+    <tr>
+        <td>Source URL</td>
+        <td>$note.source_url</td>
+    </tr>
+    <tr>
+        <td>Is Todo</td>
+        <td>$note.is_todo</td>
+    </tr>
+    <tr>
+        <td>Todo Due</td>
+        <td>$note.todo_due</td>
+    </tr>
+    <tr>
+        <td>Todo Completed</td>
+        <td>$note.todo_completed</td>
+    </tr>
+    <tr>
+        <td>Source</td>
+        <td>$note.source</td>
+    </tr>
+    <tr>
+        <td>Source Application</td>
+        <td>$note.source_application</td>
+    </tr>
+    <tr>
+        <td>Application Data</td>
+        <td>$note.application_data</td>
+    </tr>
+    <tr>
+        <td>Order</td>
+        <td>$note.order</td>
+    </tr>
+    <tr>
+        <td>User Created Time</td>
+        <td>$datetime.fromtimestamp(note.user_created_time/1000).strftime("%c")</td>
+    </tr>
+    <tr>
+        <td>User Updated Time</td>
+        <td>$datetime.fromtimestamp(note.user_updated_time/1000).strftime("%c")</td>
+    </tr>
+    <tr>
+        <td>Encryption Cipher Text</td>
+        <td>$note.encryption_cipher_text</td>
+    </tr>
+    <tr>
+        <td>Encryption Applied</td>
+        <td>$note.encryption_applied</td>
+    </tr>
+</table>
+<hr>
+<a href='/'>Home</a> | <a href="#Top">Top</a>
