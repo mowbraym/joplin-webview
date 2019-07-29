@@ -23,7 +23,7 @@ class index:
 	def GET(self):
 		i = web.input(sort="myfolder_titles.breadcrumb_title",sort_order="ASC", page=1)
 		page = int(i.page)
-		perpage = 25
+		perpage = 50
 		offset = (page - 1) * perpage
 		sort = " Order By %s %s" % (i.sort,i.sort_order)
 		limit = " LIMIT %s, %s" % (offset, perpage)
