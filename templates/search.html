@@ -1,9 +1,9 @@
 $def with (text, rows)
 
+</div>
 <H1>$text</H1>
-<ol>
+<ul>
 $for row in rows:
 	<li><a href="/note?id=$row.id">$row.title</a></li>
-</ol>
+</ul>
 <HR>
-<a href='/'>Home</a>

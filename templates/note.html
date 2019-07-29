@@ -1,7 +1,8 @@
 $def with (title, body, note, tags)
 
-<a id="Top"/><a href='#Properties'>Note Properties</a>
-<H1>$title</H1>
+<a href='#Properties'>Note Properties</a>
+</div>
+<a id="Top"/><H1>$title</H1>
 $if note.source_url:
 	<a href="$note.source_url" target="_blank">$note.source_url</a>
 <HR>
@@ -11,7 +12,14 @@ $for tag in tags:
 <HR>
 $:body
 <HR>
-<a href='/'>Home</a> | <a href="#Top">Top</a>
+
+
+<div class="topnav">
+  <a class="active" href="/">Home</a>
+  <a href="/folders">Search by Folder</a>
+  <a href="/tags">Search by Tags</a>
+  <a href="#Top">Top</a>
+</div>
 <HR>
 <a id="Properties"/><H2>Note Properties</H2>
 <table>
@@ -101,4 +109,3 @@ $:body
     </tr>
 </table>
 <hr>
-<a href='/'>Home</a> | <a href="#Top">Top</a>
