@@ -57,6 +57,12 @@ class index:
 		return render.search('Text Search - '+form.d.search, rows)
 
 class note:
+	text_search_form = web.form.Form(
+	    web.form.Textbox('search', web.form.notnull,
+		description="Text Search:"),
+	    web.form.Button('Search'),
+	)
+
 	def GET(self):
 		db = web.database(dbn='sqlite', db='database.sqlite')
 		i = web.input(id=None)
@@ -66,13 +72,45 @@ class note:
 		for row in rows:
 			return render.note(row.title, mistune.markdown(row.body), row, tags)
 
+	def POST(self):
+		form = self.text_search_form()
+		if not form.validates():
+			return render.search('Not Found', rows='')
+#		print('Search is %s' % form.d.search)
+		db = web.database(dbn='sqlite', db='database.sqlite')
+		search_str = '%' + form.d.search + '%'
+		rows = db.select('notes', where="title like $var or body like $var", vars={'var':search_str})
+		return render.search('Text Search - '+form.d.search, rows)
+
 class folders:
+	text_search_form = web.form.Form(
+	    web.form.Textbox('search', web.form.notnull,
+		description="Text Search:"),
+	    web.form.Button('Search'),
+	)
+
 	def GET(self):
 		db = web.database(dbn='sqlite', db='database.sqlite')
 		rows = db.query("Select myfolder_titles.id as folders_id, myfolder_titles.breadcrumb_title AS folders_title, note_count_by_folder.rec_count AS folders_count From myfolder_titles, note_count_by_folder Where note_count_by_folder.parent_id = myfolder_titles.id Order By myfolder_titles.full_title")
 		return render.folders(rows)
 
+	def POST(self):
+		form = self.text_search_form()
+		if not form.validates():
+			return render.search('Not Found', rows='')
+#		print('Search is %s' % form.d.search)
+		db = web.database(dbn='sqlite', db='database.sqlite')
+		search_str = '%' + form.d.search + '%'
+		rows = db.select('notes', where="title like $var or body like $var", vars={'var':search_str})
+		return render.search('Text Search - '+form.d.search, rows)
+
 class folder_notes:
+	text_search_form = web.form.Form(
+	    web.form.Textbox('search', web.form.notnull,
+		description="Text Search:"),
+	    web.form.Button('Search'),
+	)
+
 	def GET(self):
 		i = web.input(id=None)
 		db = web.database(dbn='sqlite', db='database.sqlite')
@@ -81,13 +119,45 @@ class folder_notes:
 		rows = db.select('notes', where={'parent_id': i.id})
 		return render.search('Folder Search - '+folder_title, rows)
 
+	def POST(self):
+		form = self.text_search_form()
+		if not form.validates():
+			return render.search('Not Found', rows='')
+#		print('Search is %s' % form.d.search)
+		db = web.database(dbn='sqlite', db='database.sqlite')
+		search_str = '%' + form.d.search + '%'
+		rows = db.select('notes', where="title like $var or body like $var", vars={'var':search_str})
+		return render.search('Text Search - '+form.d.search, rows)
+
 class tags:
+	text_search_form = web.form.Form(
+	    web.form.Textbox('search', web.form.notnull,
+		description="Text Search:"),
+	    web.form.Button('Search'),
+	)
+
 	def GET(self):
 		db = web.database(dbn='sqlite', db='database.sqlite')
 		rows = db.select('note_count_by_tag',order='tag_title')
 		return render.tags(rows)
 
+	def POST(self):
+		form = self.text_search_form()
+		if not form.validates():
+			return render.search('Not Found', rows='')
+#		print('Search is %s' % form.d.search)
+		db = web.database(dbn='sqlite', db='database.sqlite')
+		search_str = '%' + form.d.search + '%'
+		rows = db.select('notes', where="title like $var or body like $var", vars={'var':search_str})
+		return render.search('Text Search - '+form.d.search, rows)
+
 class tag_notes:
+	text_search_form = web.form.Form(
+	    web.form.Textbox('search', web.form.notnull,
+		description="Text Search:"),
+	    web.form.Button('Search'),
+	)
+
 	def GET(self):
 		i = web.input(id=None)
 		db = web.database(dbn='sqlite', db='database.sqlite')
@@ -96,6 +166,16 @@ class tag_notes:
 		rows = db.query("Select notes.* From note_tags Inner Join notes On notes.id = note_tags.note_id WHERE tag_id = $tag_id", vars=dict(tag_id=i.id))
 #		rows = db.query("Select tags.title As tags_title, notes.* From note_tags Inner Join notes On notes.id = note_tags.note_id Inner Join tags On tags.id = note_tags.tag_id WHERE tag_id = $tag_id", vars=dict(tag_id=i.id))
 		return render.search('Tag Search - ' + tag_title, rows)
+
+	def POST(self):
+		form = self.text_search_form()
+		if not form.validates():
+			return render.search('Not Found', rows='')
+#		print('Search is %s' % form.d.search)
+		db = web.database(dbn='sqlite', db='database.sqlite')
+		search_str = '%' + form.d.search + '%'
+		rows = db.select('notes', where="title like $var or body like $var", vars={'var':search_str})
+		return render.search('Text Search - '+form.d.search, rows)
 
 import os
 import glob
