@@ -91,7 +91,7 @@ class folders:
 
 	def GET(self):
 		db = web.database(dbn='sqlite', db='database.sqlite')
-		rows = db.query("Select myfolder_titles.id as folders_id, myfolder_titles.breadcrumb_title AS folders_title, note_count_by_folder.rec_count AS folders_count From myfolder_titles, note_count_by_folder Where note_count_by_folder.parent_id = myfolder_titles.id Order By myfolder_titles.full_title")
+		rows = db.query("Select myfolder_titles.id as folders_id, myfolder_titles.breadcrumb_title AS folders_title,  myfolder_titles.title AS folders_titleX, myfolder_titles.title_level AS folders_level, note_count_by_folder.rec_count AS folders_count From myfolder_titles, note_count_by_folder Where note_count_by_folder.parent_id = myfolder_titles.id Order By myfolder_titles.full_title")
 		return render.folders(rows)
 
 	def POST(self):
