@@ -85,6 +85,9 @@ th, td {
   background: #ccc;
 }
 
+ul {
+  list-style-type: none;
+}
 </style>
     <title>Joplin Webview</title>
 </head>
@@ -95,7 +98,7 @@ th, td {
   <a href="/tags">Search by Tags</a>
   <div class="search-container">
     <form action="" method="post">
-      <input type="text" placeholder="Search.." name="search">
+      <input type="text" placeholder="Text Search.." name="search">
       <button type="submit"><i class="fa fa-search"></i></button>
     </form>
   </div>
@@ -106,6 +109,7 @@ $:page
   <a class="active" href="/">Home</a>
   <a href="/folders">Search by Folder</a>
   <a href="/tags">Search by Tags</a>
+  <a href="#Top">Top</a>
   <div class="search-container">
     <form action="" method="post">
       <input type="text" placeholder="Search.." name="search">
