@@ -1,8 +1,32 @@
 $def with (title, body, note, tags)
 
-<a href='#Properties'>Note Properties</a>
 </div>
-<a id="Top"/><H1>$title</H1>
+<a id="Top"/>
+<div class="dropdown">
+  <button class="dropbtn"><H1>$title</H1></button>
+  <div class="dropdown-content">
+        <a>ID : $note.id</a>
+        <a>Created Time : $datetime.fromtimestamp(note.created_time/1000).strftime("%c")</a>
+        <a>Updated Time : $datetime.fromtimestamp(note.updated_time/1000).strftime("%c")</td>
+        <a>Is Conflict : $note.is_conflict</a>
+        <a>Latitude : $note.latitude</a>
+        <a>longitude : $note.longitude</a>
+        <a>Altitude : $note.altitude</a>
+        <a>Author : $note.author</a>
+        <a>Source URL : $note.source_url</a>
+        <a>Is Todo : $note.is_todo</a>
+        <a>Todo Due : $note.todo_due</a>
+        <a>Todo Completed : $note.todo_completed</a>
+        <a>Source : $note.source</a>
+        <a>Source Application : $note.source_application</a>
+        <a>Application Data : $note.application_data</a>
+        <a>Order : $note.order</a>
+        <a>User Created Time : $datetime.fromtimestamp(note.user_created_time/1000).strftime("%c")</a>
+        <a>User Updated Time : $datetime.fromtimestamp(note.user_updated_time/1000).strftime("%c")</a>
+        <a>Encryption Cipher Text : $note.encryption_cipher_text</a>
+        <a>Encryption Applied : $note.encryption_applied</a>
+  </div>
+</div>
 $if note.source_url:
 	<a href="$note.source_url" target="_blank">$note.source_url</a>
 <HR>
@@ -12,100 +36,3 @@ $for tag in tags:
 <HR>
 $:body
 <HR>
-
-
-<div class="topnav">
-  <a class="active" href="/">Home</a>
-  <a href="/folders">Search by Folder</a>
-  <a href="/tags">Search by Tags</a>
-  <a href="#Top">Top</a>
-</div>
-<HR>
-<a id="Properties"/><H2>Note Properties</H2>
-<table>
-    <tr>
-        <th>Property</th>
-        <th>Value</th>
-    </tr>
-    <tr>
-        <td>ID</td>
-        <td>$note.id</td>
-    </tr>
-    <tr>
-        <td>Created Time</td>
-        <td>$datetime.fromtimestamp(note.created_time/1000).strftime("%c")</td>
-    </tr>
-    <tr>
-        <td>Updated Time</td>
-        <td>$datetime.fromtimestamp(note.updated_time/1000).strftime("%c")</td>
-    </tr>
-    <tr>
-        <td>Is Conflict</td>
-        <td>$note.is_conflict</td>
-    </tr>
-    <tr>
-        <td>Latitude</td>
-        <td>$note.latitude</td>
-    </tr>
-    <tr>
-        <td>longitude</td>
-        <td>$note.longitude</td>
-    </tr>
-    <tr>
-        <td>Altitude</td>
-        <td>$note.altitude</td>
-    </tr>
-    <tr>
-        <td>Author</td>
-        <td>$note.author</td>
-    </tr>
-    <tr>
-        <td>Source URL</td>
-        <td>$note.source_url</td>
-    </tr>
-    <tr>
-        <td>Is Todo</td>
-        <td>$note.is_todo</td>
-    </tr>
-    <tr>
-        <td>Todo Due</td>
-        <td>$note.todo_due</td>
-    </tr>
-    <tr>
-        <td>Todo Completed</td>
-        <td>$note.todo_completed</td>
-    </tr>
-    <tr>
-        <td>Source</td>
-        <td>$note.source</td>
-    </tr>
-    <tr>
-        <td>Source Application</td>
-        <td>$note.source_application</td>
-    </tr>
-    <tr>
-        <td>Application Data</td>
-        <td>$note.application_data</td>
-    </tr>
-    <tr>
-        <td>Order</td>
-        <td>$note.order</td>
-    </tr>
-    <tr>
-        <td>User Created Time</td>
-        <td>$datetime.fromtimestamp(note.user_created_time/1000).strftime("%c")</td>
-    </tr>
-    <tr>
-        <td>User Updated Time</td>
-        <td>$datetime.fromtimestamp(note.user_updated_time/1000).strftime("%c")</td>
-    </tr>
-    <tr>
-        <td>Encryption Cipher Text</td>
-        <td>$note.encryption_cipher_text</td>
-    </tr>
-    <tr>
-        <td>Encryption Applied</td>
-        <td>$note.encryption_applied</td>
-    </tr>
-</table>
-<hr>
