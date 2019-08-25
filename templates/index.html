@@ -18,3 +18,7 @@ $for row in rows:
 	<td><a href="/note?id=$row.notes_id">$row.notes_title</a></td>
     </tr>
 </table>
+<p>Page $this_page of $pages <a href="/?page=1&sort=$sort&sort_order=$sort_order">First | </a><a href="/?page=$prev&sort=$sort&sort_order=$sort_order">Prev | </a>
+$for page in range(1, pages + 1):
+	<a href="/?page=$page&sort=$sort&sort_order=$sort_order">$page | </a>
+<a href="/?page=$next&sort=$sort&sort_order=$sort_order">Next | </a><a href="/?page=$pages&sort=$sort&sort_order=$sort_order">Last</a></p>
