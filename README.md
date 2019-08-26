@@ -3,6 +3,7 @@
 - you will need a copy of your database.sqlite file in the folder with the code
   - I hard link to a copy in my nextcloud repo, however then I need to run this with sudo
 - There are some custom views that need to be added to the database to make this work, they are in the sql folder
+  - If you use the sample database these views are already created and this step is not necessary.
   - this command will run them for you: 
       `$ sqlite3 database.sqlite -init init_views`
   - You can delete the SQL folder and the init_views file once this is done
