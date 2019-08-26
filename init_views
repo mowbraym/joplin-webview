@@ -1,0 +1,4 @@
+.read sql/myfolder_titles.sql
+.read sql/note_count_by_folder.sql
+.read sql/note_count_by_tag.sql
+.exit
