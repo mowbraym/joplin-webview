@@ -10,7 +10,13 @@ $for row in rows:
 		<ul>
 	$if row.folders_level == 3:
 		<ul><ul>
-	<li><a href="/folder_notes?id=$row.folders_id">$row.folders_titleX</a> ($row.folders_count)</li>
+	$ notes = 'notes'
+	$if row.folders_count == 1:
+		$ notes = 'note'
+	$ count = row.folders_count
+	$if row.folders_count == None:
+		$ count = 0
+	<li><a href="/folder_notes?id=$row.folders_id">$row.folders_titleX</a> ($count $notes)</li>
 	$if row.folders_level == 2:
 		</ul>
 	$if row.folders_level == 3:

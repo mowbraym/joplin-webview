@@ -2,9 +2,17 @@ $def with (rows)
 
 </div>
 <a id="Top"/>
+<HR>
 <H1>Joplin Webview - Tag List</H1>
 <ul>
 $for row in rows:
-	<li><a href="/tag_notes?id=$row.tag_id">$row.tag_title</a> ($row.rec_count)</li>
+        $ notes = 'notes'
+        $if row.rec_count == 1:
+                $ notes = 'note'
+        $ count = row.rec_count
+        $if row.rec_count == None:
+                $ count = 0
+
+	<li><a href="/tag_notes?id=$row.tag_id">$row.tag_title</a> ($count $notes)</li>
 </ul> 
 <HR>

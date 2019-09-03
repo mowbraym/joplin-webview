@@ -6,7 +6,7 @@ import re
 import hashlib
 import sqlite3
 
-render = web.template.render('templates/',globals={'datetime':datetime},base='base')
+render = web.template.render('templates/',globals={'datetime':datetime, 'len':len},base='base')
 urls = (
     '/', 'index',
     '/login','login',
@@ -36,7 +36,7 @@ class index:
         offset = (page - 1) * perpage
         sort = " Order By %s %s" % (i.sort,i.sort_order)
         limit = " LIMIT %s, %s" % (offset, perpage)
-        sql = "Select myfolder_titles.breadcrumb_title AS folders_title, myfolder_titles.id AS folders_id, notes.title As notes_title, notes.id as notes_id, notes.updated_time as notes_updated_time From notes Inner Join myfolder_titles On myfolder_titles.id = notes.parent_id" + sort + limit
+        sql = "Select myfolder_titles.breadcrumb_title AS folders_title, myfolder_titles.id AS folders_id, notes.title As notes_title, notes.id as notes_id, notes.updated_time as notes_updated_time, length(notes.body) as notes_size, substr(notes.body,1,40) as notes_sample From notes Inner Join myfolder_titles On myfolder_titles.id = notes.parent_id" + sort + limit
         db = web.database(dbn='sqlite', db='database.sqlite')
         rows = db.query(sql)
         rowcount = db.query("SELECT COUNT(*) AS count FROM notes")[0]

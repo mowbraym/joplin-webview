@@ -7,15 +7,37 @@ $for page in range(1, pages + 1):
 <a href="/?page=$next&sort=$sort&sort_order=$sort_order">Next | </a><a href="/?page=$pages&sort=$sort&sort_order=$sort_order">Last</a></p>
 <table id="t01">
     <tr>
-	<th><a href="?sort=myfolder_titles.breadcrumb_title&sort_order=ASC">Folder</a></th>
-	<th><a href="?sort=notes.updated_time&sort_order=DESC">Update Time</a></th>
-	<th><a href="?sort=notes.title&sort_order=ASC">Title</a></th>
+	$if sort == "myfolder_titles.breadcrumb_title":
+		$if sort_order == "ASC":
+			<th><a href="?sort=myfolder_titles.breadcrumb_title&sort_order=DESC">Folder</a> (ASC)</th>
+		$else:
+			<th><a href="?sort=myfolder_titles.breadcrumb_title&sort_order=ASC">Folder</a> (DESC)</th>
+	$else:
+		<th><a href="?sort=myfolder_titles.breadcrumb_title&sort_order=ASC">Folder</a></th>
+	$if sort == "notes.updated_time":
+		$if sort_order == "ASC":
+			<th><a href="?sort=notes.updated_time&sort_order=DESC">Update Time</a> (ASC)</th>
+		$else:
+			<th><a href="?sort=notes.updated_time&sort_order=ASC">Update Time</a> (DESC)</th>
+	$else:
+		<th><a href="?sort=notes.updated_time&sort_order=DESC">Update Time</a></th>
+	$if sort == "notes.title":
+		$if sort_order == "ASC":
+			<th><a href="?sort=notes.title&sort_order=DESC">Title</a> (ASC)</th>
+		$else:
+			<th><a href="?sort=notes.title&sort_order=ASC">Title</a> (DESC)</th>
+	$else:
+		<th><a href="?sort=notes.title&sort_order=ASC">Title</a></th>
+	<th>Sample</th>
+	<th>Size</th>
     </tr>
 $for row in rows:
     <tr>
 	<td><a href="folder_notes?id=$row.folders_id">$row.folders_title</a></td>
 	<td>$datetime.fromtimestamp(row.notes_updated_time/1000).strftime("%c")</td>
 	<td><a href="/note?id=$row.notes_id">$row.notes_title</a></td>
+	<td>$row.notes_sample ...</td>
+	<td>$row.notes_size</td>
     </tr>
 </table>
 <p>Page $this_page of $pages <a href="/?page=1&sort=$sort&sort_order=$sort_order">First | </a><a href="/?page=$prev&sort=$sort&sort_order=$sort_order">Prev | </a>
