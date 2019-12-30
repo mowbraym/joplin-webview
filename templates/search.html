@@ -8,6 +8,6 @@ $def with (text, rows)
 </tr>
 $for row in rows:
 	$ size = len(row.body)
-	<tr><td><a href="/note?id=$row.id">$row.title</a></td><td>$row.body[1:40] ...</td><td align=right>$size</td><td>$datetime.fromtimestamp(row.updated_time/1000).strftime("%c")</td></tr>
+	<tr><td><a href="/note?id=$row.id">$row.title</a></td><td>$row.body[0:40] ...</td><td align=right>$size</td><td>$datetime.fromtimestamp(row.updated_time/1000).strftime("%c")</td></tr>
 </table>
 <HR>
